@@ -1,5 +1,6 @@
 package com.example.patrick.comunicacao2;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -12,7 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     static final int SAY_POSITIVO = 0;
     static final int SAY_NEGATIVO = 1;
@@ -41,8 +42,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent mIntent = new Intent();
+        Intent mIntent = new Intent("com.example.patrick.comunicacao1.RemoteService.BIND");;
         mIntent.setAction("com.example.patrick.comunicacao1.RemoteService");
+        mIntent.setPackage("com.example.patrick");
         bindService(mIntent, mServiceConnection, BIND_AUTO_CREATE);
 
         Button mButton = (Button)findViewById(R.id.button1);
